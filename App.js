@@ -1,6 +1,11 @@
-var a=7;
-function b1(){
-    console.log("hello world")
+
+function b(){
+    c()
+    let x=10;
+    function c(){
+          console.log(x,a)
+    }
+   
 }
-b1()
-console.log(x)
+var a=10;
+b()
