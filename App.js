@@ -1,12 +1,9 @@
-function a(){
-  for(let b=1;b<=5;b++){
-    function close(i){
-      setTimeout(function(){
-        console.log(i)
-    },b*1000)
-    }
-    close(b)
-  } 
+function outer(b){
+  // let a=10;
+  function inner(){
+    console.log(a,b)
+  }
+  return inner
 }
-
-a()
+let a=100; 
+outer(10)()
