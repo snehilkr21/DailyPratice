@@ -1,14 +1,12 @@
 function a(){
-    var a1=10;
-    function b(){
-        var b1=20;
-        function c(){
-            console.log(a1,b1)
-        }
-        return c;
+  for(let b=1;b<=5;b++){
+    function close(i){
+      setTimeout(function(){
+        console.log(i)
+    },b*1000)
     }
-    return b()
+    close(b)
+  } 
 }
-var d=a()
-console.log(d)
-console.log(d())
+
+a()
