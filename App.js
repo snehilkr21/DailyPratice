@@ -1,9 +1,8 @@
-function outer(b){
-  // let a=10;
-  function inner(){
-    console.log(a,b)
-  }
-  return inner
+function attachEventListener(){
+  let count =0;
+  document.getElementById("clickMe").
+  addEventListener("click",()=>{
+    console.log("click me",++count)
+  })
 }
-let a=100; 
-outer(10)()
+attachEventListener()
