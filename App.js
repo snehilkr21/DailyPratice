@@ -1,8 +1,9 @@
-function attachEventListener(){
-  let count =0;
-  document.getElementById("clickMe").
-  addEventListener("click",()=>{
-    console.log("click me",++count)
+const cart=["shoes","pants","kurta"]
+
+api.createOrder(cart,function (){
+  api.proceedToPayment(function (){
+    api.showOrderSummary(function (){
+       api.updateWallet()
+    })
   })
-}
-attachEventListener()
+})
