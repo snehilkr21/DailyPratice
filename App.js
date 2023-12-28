@@ -1,58 +1,45 @@
-const prom1 = new Promise(function (resolve, reject) {
-    setTimeout(() => {
-        resolve("gfg1")
-    }, 1000)
-})
+// Check if Promise.allSettled already exists, if not, create a polyfill
+function mySettled (promises) {
+  const results = [];
+      let completed = 0;
 
-const prom2 = new Promise(function (resolve, reject) {
-    setTimeout(() => {
-        reject("error")
-    }, 4000)
-})
+      if (promises.length === 0) {
+        resolve(results);
+      }
 
-const prom3 = new Promise(function (resolve, reject) {
-    setTimeout(() => {
-        resolve("gfg2")
-    }, 3000)
-})
+      const checkCompletion = () => {
+        if (completed === promises.length) {
+          resolve(results);
+        }
+      };
 
-const prom4 = new Promise(function (resolve, reject) {
-    setTimeout(() => {
-        resolve("gfg3")
-    }, 3000)
-})
-
-Promise.myall = function (values) {
-    const promise = new Promise(function (resolve, reject) {
-        let result = [];
-        let total = 0;
-        values.forEach((item, index) => {
-            console.log(`xcv${index}`, item);
-            Promise.resolve(item)
-                .then((res) => {
-                    console.log('dfg1', res);
-                    result[index] = res;
-                    total++;
-                    if (total === values.length)
-                        resolve(result);
-                })
-                .catch((err) => {
-                    console.log('dfg2', err);
-                    reject(err);
-                })
-        })
-    })
-    return promise
+      promises.forEach((promise, index) => {
+        Promise.resolve(promise)
+          .then((value) => {
+            results[index] = { status: 'fulfilled', value };
+          })
+          .catch((reason) => {
+            results[index] = { status: 'rejected', reason };
+          })
+          .finally(() => {
+            completed++;
+            checkCompletion();
+          })
+      })
+    
 }
 
-Promise.myall([
-    prom1,
-    prom3,
-    prom4
-])
-    .then((res) => {
-        console.log(res);
-    })
-    .catch((er) => {
-        console.log(er)
-    })
+// Example usage
+const promise1 = Promise.resolve(3);
+const promise2 = new Promise((_, reject) => setTimeout(reject, 100, 'Error'));
+const promise3 = new Promise((resolve) => setTimeout(resolve, 200, 'Resolved'));
+
+const allPromises = [promise1, promise2, promise3];
+
+Promise.allSettled(allPromises)
+  .then((results) => {
+    console.log("result",results);
+  })
+  .catch((error) => {
+    console.error('Error occurred:', error);
+  });
