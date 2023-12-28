@@ -21,10 +21,6 @@ function mySettled (promises) {
           .catch((reason) => {
             results[index] = { status: 'rejected', reason };
           })
-          .finally(() => {
-            completed++;
-            checkCompletion();
-          })
       })
     
 }
