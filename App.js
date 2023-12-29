@@ -1,18 +1,17 @@
-async function getData(){
-  return "snehil";
-}
-const data=getData()
-data.then((res)=>console.log(res))
-console.log("data",data)
-
-
-const p=new Promise((resolve , reject)=>{
-    resolve("hello world");
+const p = new Promise((resolve,reject)=>{
+    resolve("Done")
 })
-async function getData1(){
-    return p;
+
+//handle Promise earlier
+function getData(){
+  p
+  .then((res)=> console.log("res",res))
 }
-const result = getData1()
-result.then((res)=>{
-  console.log("res",res)
-})
+getData()
+
+//handle Promise using async and await 
+async function handlePromise(){
+  const value=await p
+  console.log("value",value)
+}
+handlePromise()
