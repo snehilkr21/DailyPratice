@@ -1,43 +1,19 @@
-function myAny(promises) {
+
+async function asyncFunction() {
+  return 42;
+}
+
+async function asyncFunctionWithPromise() {
+  return Promise.resolve(42);
+}
+
+async function asyncFunctionExplicitPromise() {
   return new Promise((resolve, reject) => {
-    if (promises.length === 0) {
-      reject(new AggregateError('No promises were provided'));
-    }
-
-    const errors = [];
-    let completed = 0;
-
-    const checkCompletion = () => {
-      if (completed === promises.length) {
-        reject(new AggregateError('All promises were rejected', errors));
-      }
-    };
-
-    promises.forEach((promise) => {
-      Promise.resolve(promise)
-        .then((value) => {
-          resolve(value);
-        })
-        .catch((reason) => {
-          errors.push(reason);
-          completed++;
-          checkCompletion();
-        });
-    });
+    resolve(42);
   });
 }
 
-// Example usage
-const promise1 = new Promise((resolve) => setTimeout(resolve, 500, 'First'));
-const promise2 = new Promise((resolve) => setTimeout(resolve, 300, 'Second'));
-const promise3 = new Promise((_, reject) => setTimeout(reject, 200, 'Third'));
-
-const allPromises = [promise1, promise2, promise3];
-
-myAny(allPromises)
-  .then((result) => {
-    console.log('Resolved:', result);
-  })
-  .catch((error) => {
-    console.error('Error occurred:', error);
-  });
+const result1 = asyncFunction(); // Returns a Promise that resolves with 42
+const result2 = asyncFunctionWithPromise(); // Returns a Promise that resolves with 42
+const result3 = asyncFunctionExplicitPromise(); // Returns a Promise that resolves with 42
+console.log(result1,result2,result3)
