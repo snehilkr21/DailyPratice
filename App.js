@@ -1,19 +1,18 @@
-
-async function asyncFunction() {
-  return 42;
+async function getData(){
+  return "snehil";
 }
+const data=getData()
+data.then((res)=>console.log(res))
+console.log("data",data)
 
-async function asyncFunctionWithPromise() {
-  return Promise.resolve(42);
+
+const p=new Promise((resolve , reject)=>{
+    resolve("hello world");
+})
+async function getData1(){
+    return p;
 }
-
-async function asyncFunctionExplicitPromise() {
-  return new Promise((resolve, reject) => {
-    resolve(42);
-  });
-}
-
-const result1 = asyncFunction(); // Returns a Promise that resolves with 42
-const result2 = asyncFunctionWithPromise(); // Returns a Promise that resolves with 42
-const result3 = asyncFunctionExplicitPromise(); // Returns a Promise that resolves with 42
-console.log(result1,result2,result3)
+const result = getData1()
+result.then((res)=>{
+  console.log("res",res)
+})
