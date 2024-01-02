@@ -1,13 +1,28 @@
 const p = new Promise((resolve,reject)=>{
-   resolve("Promise Ressolved")
+   setTimeout(()=>{
+        resolve("Promise resolved value!!")
+   },10000)
 })
 
-async function handlePromise(){
-  const val = await p;
-  console.log("val",val)
+function getData(){
+  console.log("start")
+  p.then((res)=>console.log("res",res))
+  console.log("Namaste Javascript")
 }
-handlePromise()
-// function getData(){
-//   p.then((res)=>console.log("res",res))
+getData()
+for(let i=0;i<10;i++){
+  console.log("hello world")
+}
+
+
+// async function handlePromise(){
+//   console.log("start")
+//   const val = await p;
+//   console.log("Namaste Javascript");
+//   console.log("val",val)
+
 // }
-// getData()
+// handlePromise()
+// for(let i=0;i<10;i++){
+//   console.log("hello world")
+// }
