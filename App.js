@@ -1,52 +1,12 @@
-const p1 = new Promise((resolve,reject)=>{
-  logWithTimestamp("p1 execution start")
-   setTimeout(()=>{
-        resolve("Promise resolved value!! 1")
-   },30000)
-})
-
-const p2 = new Promise((resolve,reject)=>{
-  logWithTimestamp("p2 execution start")
-  setTimeout(()=>{
-       resolve("Promise resolved value!! 2")
-  },50000)
-})
-
-function logWithTimestamp(message) {
-  const timestamp = new Date().toTimeString(); // Get current timestamp
-  console.log(`[${timestamp}] ${message}`); // Prepend timestamp to the message
-}
 
 async function handlePromise(){
-  console.log("start")
-
-  logWithTimestamp("p1 start")
-  const val1 = await p1;
-  console.log("Namaste Javascript1");
-  console.log("val",val1)
-
-  logWithTimestamp("p1 end")
-  logWithTimestamp("p2 start")
-
-  const val2 = await p2;
-  console.log("Namaste Javascript2");
-  console.log("val",val2)
-
-  logWithTimestamp("p2 end")
+     let data = await fetch(`https://api.github.com/users/snehilkr21`)
+     //it gives a promise which contains the readable stream , if want to convert that readable stream to json then 
+     //use .json , using .json also gives a promise that's why we use wait keyword and it need time to resolve
+     //and when this promise is resolved it gives the actual result as we want.
+     data = await data.json()
+     console.log("data",data)
 }
 handlePromise()
-for(let i=0;i<10;i++){
-  console.log("hello world")
-}
-
-// function getData(){
-//   console.log("start")
-//   p.then((res)=>console.log("res",res))
-//   console.log("Namaste Javascript")
-// }
-// getData()
-// for(let i=0;i<10;i++){
-//   console.log("hello world")
-// }
 
 
