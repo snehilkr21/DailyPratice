@@ -1,11 +1,15 @@
-"use strict"
-const student1 = {
-  name : "Snehil",
-  printName : () => {
-    const x = () =>{
-      console.log(this)
-    }
-    x()
+let counter=0
+const getData = () =>{
+  console.log("fetching Data",counter++)
+}
+
+const doSomething = (fn ,d) =>{
+  let timer;
+  return function () {
+    clearTimeout(timer)
+    timer = setTimeout(()=>{
+       fn()
+    },d)
   }
 }
-student1.printName()
+const betterFunction =doSomething(getData,300)
