@@ -4,12 +4,17 @@ const getData = () =>{
 }
 
 const doSomething = (fn ,d) =>{
-  let timer;
+  let timer = true;
   return function () {
-    clearTimeout(timer)
-    timer = setTimeout(()=>{
-       fn()
-    },d)
+    if(timer){
+      timer = false
+      fn();
+
+      setTimeout(()=>{
+         timer = true
+      },d)}
+    
   }
 }
-const betterFunction =doSomething(getData,300)
+const betterFunction = doSomething(getData, 10)
+console.log("betterFunction", betterFunction)
