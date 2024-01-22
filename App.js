@@ -1,9 +1,12 @@
-document.getElementById("grandParent").addEventListener("click",()=>{console.log("grandparent is cliked")},true)
-document.getElementById("parent").addEventListener("click",(e)=>{
-  console.log("parent is cliked") 
+document.getElementById("category").addEventListener("click",
+(e)=>{
   e.stopPropagation()
-  }  
-  ,true)
-document.getElementById("child").addEventListener("click",(e)=>{
-  console.log("child is cliked")
-},true)
+  if(e.target.tagName =="LI")
+  window.location.href = "/"+e.target.id
+  console.log("LI is clicked")
+})
+
+document.getElementById("div").addEventListener("click",
+(e)=>{
+  console.log("div is clicked")
+})
