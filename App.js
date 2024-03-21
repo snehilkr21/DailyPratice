@@ -1,16 +1,9 @@
-let name1 = {
-  firstName : "Snehil",
-  lastName :  "kumar",
-}
+const arr = [1,2,3,4]
 
-let name2 = {
-  firstName : "Sachin",
-  lastName :  "Tendulkar",
-}
+Array.prototype.ourEach = function () {
+   for(let i=0 ; i < this.length ; i++ ){
+       console.log(this[i]*2)
+   }
+} 
 
-let printFullName = function (homeTown,pincode) {
-  console.log(this.firstName + " " + this.lastName + " from "+homeTown + " "+ pincode);
-}
-let fun = printFullName.bind(name1,"Bihar","844101")
-console.log("fun",fun)
-fun()
+arr.ourEach()
