@@ -1,9 +1,12 @@
 const arr = [1,2,3,4]
 
-Array.prototype.ourEach = function () {
+Array.prototype.myMap = function () {
+   let newArray = []
    for(let i=0 ; i < this.length ; i++ ){
-       console.log(this[i]*2)
+       newArray.push(this[i]*2)
    }
+   return newArray
 } 
 
-arr.ourEach()
+let result=arr.myMap()
+console.log("result",result)
