@@ -1,12 +1,11 @@
-const arr = [1,2,3,4]
 
-Array.prototype.myFilter = function () {
-   let newArray = []
-   for(let i=0 ; i < this.length ; i++ ){
-       this[i]>2 && newArray.push(this[i])
+let arr = [ 1,2,3,4 ];
+
+Array.prototype.myForEach = function(callback){
+   console.log("callback -> ",callback)
+   for(let i = 0 ; i<this.length ; i++){
+    console.log(this[i] + " " + callback(this[i]))
    }
-   return newArray
-} 
+}
 
-let result=arr.myFilter()
-console.log("result",result)
+arr.myForEach((el)=>el*2)
