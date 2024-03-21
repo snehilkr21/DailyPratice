@@ -1,12 +1,12 @@
 const arr = [1,2,3,4]
 
-Array.prototype.myMap = function () {
+Array.prototype.myFilter = function () {
    let newArray = []
    for(let i=0 ; i < this.length ; i++ ){
-       newArray.push(this[i]*2)
+       this[i]>2 && newArray.push(this[i])
    }
    return newArray
 } 
 
-let result=arr.myMap()
+let result=arr.myFilter()
 console.log("result",result)
