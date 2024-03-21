@@ -1,11 +1,13 @@
 
 let arr = [ 1,2,3,4 ];
 
-Array.prototype.myForEach = function(callback){
+Array.prototype.myMap = function(callback){
    console.log("callback -> ",callback)
+   let result = []
    for(let i = 0 ; i<this.length ; i++){
-    console.log(this[i] + " " + callback(this[i]))
+     result.push(callback(this[i]))
    }
+   return result
 }
 
-arr.myForEach((el)=>el*2)
+console.log(arr.myMap((el)=>el*2))
