@@ -1,13 +1,13 @@
+let arr = [1,2,3,5]
 
-let arr = [ 1,2,3,4 ];
-
-Array.prototype.myFilter = function(callback){
-   console.log("callback -> ",callback)
-   let result = []
-   for(let i = 0 ; i<this.length ; i++){
-     this[i]>2 && result.push(callback(this[i]))
-   }
-   return result
+Array.prototype.myReduce = function(callbackFn,initialVal){
+    let res=initialVal
+    for(let i=0;i<this.length;i++){
+       res = !res ? this[i] : callbackFn(res,this[i])
+    }
+    return res;
 }
 
-console.log(arr.myFilter((el)=>el))
+console.log(arr.myReduce((acc,curr)=>{
+     return acc+curr
+},0))
