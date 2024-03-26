@@ -8,14 +8,17 @@ function printName(state,age,country){
     console.log(this.firstName + " " + this.lastName + " state " + state + " age "+ age + " country " + country)
 }
 
-Function.prototype.myApply =  function (obj, ...args){
+Function.prototype.myBind =  function (obj, ...args){
     console.log("console ", obj,args[0],args)
     if(typeof this !== 'function'){
         return new Error("Not callabel")
     }else{
         obj.fn = this
-        obj.fn(...args[0])
+        return function (...args2){
+             obj.fn(...args,...args2)
+        }
     }
 }
-printName.myApply(student, ["Bihar",30,"India"])
+let result = printName.myBind(student, "Bihar",30)
+result("India")
 
