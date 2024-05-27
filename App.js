@@ -1,47 +1,45 @@
-let cart = ["shoe","belt","shirt"];
+const promise1 = new Promise(function(resolve,reject){
+    setTimeout(()=>{
+        resolve(33)
+    },100)
+})
+const promise2 = new Promise(function(resolve,reject){
+    setTimeout(()=>{
+        reject(33)
+    },200)
+})
+const promise3 = new Promise(function(resolve,reject){
+    setTimeout(()=>{
+        resolve(33)
+    },300)
+})
 
-function createOrder(cart){
-
-    const pr = new Promise( function(resolve,reject){
-         let check = true;
-         if(check){
-            resolve("55")
-         }else{
-            reject(new Error("Error"))
-         }
-    }) 
-    return pr;
-}
-createOrder(cart,function(orderId){
-    proccedToPayment(orderId,function(paymentInfo){
-        showOrderSummary(paymentInfo,function(paymentInfo){
-            updateWallet(paymentInfo)
+Promise.myAll = function(values){
+   const pr = new Promise(function(resolve,reject){
+        let result = [];
+        let length =values.length
+        let complted =0
+        values.forEach((item,index)=>{
+            Promise.resolve(item)
+            .then((res)=>{
+                result[index]=res;
+                complted++
+                if(complted==length){
+                    resolve(result)
+                }
+            })
+            .catch((err)=>{
+                reject(new Error(`fails ${err}`))
+            })
         })
-    })
-})
-
-function proccedToPayment(paymentInfo){
-    const pr= new Promise(function(resolve,reject){
-        let check=false;
-        if(check){
-            resolve(2);
-        }else{
-            reject(new Error("hello"))
-        }
-    })
-    return pr;
+   })
+   return pr;
 }
-createOrder(cart)
-.then(function(orderId){
-    console.log("orderId",orderId)
-    return proccedToPayment(orderId)
-})
-.then(function(paymentInfo){
-    return showOrderSummary(paymentInfo)
-})
-.then(function(paymentInfo){
-    updateWallet(paymentInfo)
+
+Promise.myAll([promise1,promise2,promise3])
+.then((res)=>{
+    console.log("res",res);
 })
 .catch((err)=>{
-    console.log(err.message)
+    console.log("err",err.message)
 })
