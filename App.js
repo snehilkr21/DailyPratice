@@ -1,24 +1,19 @@
-let student = {
-    firstName : "Snehil",
-    lastName  : "Raj"
-}
+let cart = ["shoe","belt","shirt"];
+api.createOrder(cart,function(orderId){
+    api.proccedToPayment(orderId,function(paymentInfo){
+        api.showOrderSummary(paymentInfo,function(paymentInfo){
+            api.updateWallet(paymentInfo)
+        })
+    })
+})
 
-function printName(state,age,country){
-    console.log("77 ",country,age)
-    console.log(this.firstName + " " + this.lastName + " state " + state + " age "+ age + " country " + country)
-}
-
-Function.prototype.myBind =  function (obj, ...args){
-    console.log("console ", obj,args[0],args)
-    if(typeof this !== 'function'){
-        return new Error("Not callabel")
-    }else{
-        obj.fn = this
-        return function (...args2){
-             obj.fn(...args,...args2)
-        }
-    }
-}
-let result = printName.myBind(student, "Bihar",30)
-result("India")
-
+createOrder(cart)
+.then(function(orderId){
+    return proccedToPayment(orderId)
+})
+.then(function(paymentInfo){
+    return showOrderSummary(paymentInfo)
+})
+.then(function(paymentInfo){
+    updateWallet(paymentInfo)
+})
