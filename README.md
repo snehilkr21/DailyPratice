@@ -6,3 +6,4 @@
 5)Promise object are immutable, we cannot modify the content of object.
 6)Promise.all takes the array of promises and return the value of promise result in an array. if any one promise fails then it immdetaily throw error.
 7)Promise.allSettled takes the array of promise and resturn the array of object(having status and value). it waits for all promise to resolve. 
+8)Promise.race takes the array of promise and return the value of first settled(either resolve or reject). If first promise takes 500ssec to resolve and second takes 500sec to reject then it gives the result of reolve one.
