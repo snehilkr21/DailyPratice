@@ -5,3 +5,4 @@
 4)Promise is a object which represent the eventual completion/failure of async operation and its result value.
 5)Promise object are immutable, we cannot modify the content of object.
 6)Promise.all takes the array of promises and return the value of promise result in an array. if any one promise fails then it immdetaily throw error.
+7)Promise.allSettled takes the array of promise and resturn the array of object(having status and value). it waits for all promise to resolve. 

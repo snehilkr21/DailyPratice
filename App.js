@@ -4,39 +4,52 @@ const promise1 = new Promise(function(resolve,reject){
     }, 100);
 })
 const promise2 = new Promise(function(resolve,reject){
-    setTimeout(() => {
-        resolve(33)
-    }, 100);
+    setTimeout(()=>{
+        reject(55)
+    },200)
 })
-const promise3 = Promise.reject(55);
+const promise3 = new Promise(function(resolve,reject){
+    setTimeout(()=>{
+         resolve(45)
+    },300)
+})
 
-Promise.myAll = function (values){
-    const pr = new Promise(function (resolve,reject){
-        let result = []
+Promise.mySettled = function(values){
+    const pr= new Promise(function(resolve,reject){
         let completed = 0;
-        let length =values.length
+        let length = values.length;
+        let result = []
+        function check(){
+            if(completed==length){
+                resolve(result)
+            }
+        }
         values.forEach((item,index)=>{
             Promise.resolve(item)
             .then((res)=>{
-                completed++;
-                result[index]=res
-                if(completed==length){
-                    resolve(result)
+                completed++
+                result[index] = {
+                    "status" : "fulfilled",
+                    "value" : res
                 }
+                check()
             })
             .catch((err)=>{
-                reject(err)
+                completed++;
+                result[index] = {
+                    "status" : "rejected",
+                    "value" : err
+                }
+                check()
             })
         })
     })
-
-
     return pr;
 }
 
-Promise.myAll([promise1,promise2,promise3])
+Promise.mySettled([promise1,promise2,promise3])
 .then((res)=>{
-    console.log("res",res)
+    console.table(res)
 })
 .catch((err)=>{
     console.log("err",err)
