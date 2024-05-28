@@ -8,4 +8,7 @@
 7)Promise.allSettled takes the array of promise and resturn the array of object(having status and value). it waits for all promise to resolve. It donot come inside the .catch
 8)Promise.race takes the array of promise and return the value of first settled(either resolve or reject). If first promise takes 500ssec to resolve and second takes 500sec to reject then it gives the result of reolve one.
 9)Promise.any takes the array of promise and return the first resolved . if all promise fails then we have to throw new AggregateError which is captured using err.errors
-10)
+10)Async keyword is used before function. Async function return a promise . if we reurn the non promise value then it convert it into promise then return it. we retrieve the actual data from promise is using .then method
+11)Await is a keyword  that is placed before where we call the promise. And one more important point is that await keyword is always placed inside the async keyword. The await keyword always return the value which are passed from promise.
+12)When Promise is not resolve (using await keyword) then JS engine will suspend the execution and come out of that function.
+13)If we use await keyword out of async function then it throw syntax error.
