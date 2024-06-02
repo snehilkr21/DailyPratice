@@ -1,15 +1,19 @@
-function apiCall() {
-    console.log("api call")
+function apiCall(){
+    console.log("apiCall")
 }
 
-function betterFunction (fn,d) {
-     let timer;
-     return function() {
-        clearTimeout(timer);
-        timer = setTimeout(()=>{
+function betterFunction(fn,d){
+    let timer;
+    return function(){
+        clearTimeout(timer)
+        timer=setTimeout(()=>{
             fn()
         },d)
-     }
+    }
 }
 
-const onChangeValue = betterFunction(apiCall,300)
+
+
+
+
+const debounceFunction = betterFunction(apiCall,500)
