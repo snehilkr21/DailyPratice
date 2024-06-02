@@ -1,10 +1,15 @@
-const obj = {
-    name : "Snehil",
-    printName : () => {
-        const x = () =>{
-            console.log(this)
-        }
-        x()
+function data(){
+    console.log("data fetched");
+}
+
+const fetchingData = (fn,d) =>{
+    let timer;
+    return function(){
+        clearTimeout(timer)
+        timer=setTimeout(()=>{
+           fn()
+        },d)
     }
 }
-obj.printName()
+
+const apicall = fetchingData(data,300)

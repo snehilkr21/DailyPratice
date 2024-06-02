@@ -20,4 +20,5 @@
 19)If there is a normal method inside the object then value of this keyord depends on how that method is called (obj.x()) , So value of this keyword is obj. (it is applicable in both strict and non strict mode)
 20)call, aplly, bind is used to share the method. So Suppose there is a method which printName method and if we want to use of another object then we have to override the value of this keyword. student1.printName.call(student2) call method take the value to whom this points to
 21)Inside the DOM tree the value of this keyword points to refernce to HTML element
+22)Debouncing and throatling are technique for limiting the rate of function call. In debouncing we generally call the api if there is difference between two api call is grater than thresold time. In throatling we call the api after specific interval of time.
 
