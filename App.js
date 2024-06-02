@@ -1,18 +1,18 @@
 function apiCall(){
-    console.log("apicall")
+    console.log("apiCall");
 }
 
-function betterFunction (fn,d) {
-   let timer = true;
-   return function (){
-    if(timer){
-        timer = false;
+function betterFunction(fn,d){
+    let timer = true;
+    return function(){
+        if(timer){
+        timer =false;
         fn()
         setTimeout(()=>{
-          timer=true;
+        timer = true;
         },d)
     }
-   }
+    }
 }
 
 
