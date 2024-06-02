@@ -1,19 +1,20 @@
 function apiCall(){
-    console.log("apiCall")
+    console.log("apicall")
 }
 
-function betterFunction(fn,d){
-    let timer;
-    return function(){
-        clearTimeout(timer)
-        timer=setTimeout(()=>{
-            fn()
+function betterFunction (fn,d) {
+   let timer = true;
+   return function (){
+    if(timer){
+        timer = false;
+        fn()
+        setTimeout(()=>{
+          timer=true;
         },d)
     }
+   }
 }
 
 
 
-
-
-const debounceFunction = betterFunction(apiCall,500)
+const throttleFunction = betterFunction(apiCall,500)
