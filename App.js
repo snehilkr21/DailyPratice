@@ -1,7 +1,9 @@
-document.getElementById("category").addEventListener("click",(e)=>{
-        e.stopPropagation()
-        console.log(e.target.tagName)
-       if(e.target.tagName == "LI"){
-         window.location.href = "/"+e.target.id
-       }
-})
+const obj={
+    "first" : "Snehil",
+    "last"  : "Raj",
+    
+}
+const printFullName =function(pincode,location){
+    console.log(this.first+" "+this.last+" "+pincode+" "+location)
+}
+printFullName.apply(obj,["844101","Patna"])
