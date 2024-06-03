@@ -1,20 +1,7 @@
-function apiCall(){
-    console.log("hello world")
-}
-
-function betterFunction (fn,d){
-    let timer;
-    return function(){
-        clearTimeout(timer)
-        timer=setTimeout(()=>{
-          fn()
-        },d)
-    }
-}
-
-
-
-
-
-
-const debounceFunction = betterFunction(apiCall,500)
+document.getElementById("category").addEventListener("click",(e)=>{
+        e.stopPropagation()
+        console.log(e.target.tagName)
+       if(e.target.tagName == "LI"){
+         window.location.href = "/"+e.target.id
+       }
+})
