@@ -1,9 +1,13 @@
-const obj={
-    "first" : "Snehil",
-    "last"  : "Raj",
-    
+console.log(moment(new Date().getTime()).format("HH:mm:ss"))
+console.log("start")
+let startTime= new Date().getTime()
+let endTime = startTime
+
+setTimeout(()=>{
+    console.log("setTimeout",moment(new Date().getTime()).format("HH:mm:ss"))
+},500)
+
+while(endTime<startTime+1000){
+    endTime = new Date().getTime()
 }
-const printFullName =function(pincode,location){
-    console.log(this.first+" "+this.last+" "+pincode+" "+location)
-}
-printFullName.apply(obj,["844101","Patna"])
+console.log("end")
